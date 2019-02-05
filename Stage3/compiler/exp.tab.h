@@ -61,12 +61,14 @@ extern int yydebug;
     ENDWHILE = 271,
     INTTYPE = 272,
     BOOLTYPE = 273,
-    LT = 274,
-    GT = 275,
-    LE = 276,
-    GE = 277,
-    NE = 278,
-    EQ = 279
+    BREAK = 274,
+    CONTINUE = 275,
+    LT = 276,
+    GT = 277,
+    LE = 278,
+    GE = 279,
+    NE = 280,
+    EQ = 281
   };
 #endif
 

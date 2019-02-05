@@ -189,9 +189,26 @@ int codegen(struct tnode* root)
 
     else if(root->nodeType == BREAK)
     {
-        int exit_label;
-        loop_exit = pop_from_stack(loop_exit,&exit_label);
-        fprintf(fout,)
+        if(loop_exit != NULL)
+        {
+            int exit_label;
+            loop_exit = pop_from_stack(loop_exit,&exit_label);
+            fprintf(fout,"JMP L%d\n",exit_label);
+            loop_entry = pop_from_stack(loop_entry,&exit_label);     //exit_label used as dummy variable
+        }
+        return 0;
+    }
+
+    else if(root->nodeType == CONTINUE)
+    {
+        if(loop_entry != NULL)
+        {
+            int entry_label;
+            loop_entry = pop_from_stack(loop_entry,&entry_label);
+            fprintf(fout,"JMP L%d\n",entry_label);
+            loop_exit = pop_from_stack(loop_exit,&entry_label);     //exit_label used as dummy variable
+        }
+        return 0;
     }
 
     // for all the rest node types

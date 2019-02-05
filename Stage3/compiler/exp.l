@@ -33,5 +33,7 @@
 "while" {return WHILE;}
 "do"    {return DO;}
 "endwhile" {return ENDWHILE;}
+"break" {return BREAK;}
+"continue" {return CONTINUE;}
 [ \t\n] {}
 (.)     {printf("Invalid expression\n");exit(1);}

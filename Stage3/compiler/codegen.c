@@ -2,8 +2,11 @@
 #include<stdlib.h>
 #include "codegen.h"
 #include "exp.tab.h"
+#include "stack.h"
 static int nextReg = 0;
 static int nextLabel = 0;
+struct stack *loop_entry = NULL;
+struct stack *loop_exit = NULL;
 
 void initialize()
 {
@@ -172,6 +175,8 @@ int codegen(struct tnode* root)
     {
         int label_1 = getLabel();
         int label_2 = getLabel();
+        loop_entry = push_to_stack(loop_entry,label_1);
+        loop_exit = push_to_stack(loop_exit,label_2);
         fprintf(fout,"L%d: ",label_1);
         int reg = codegen(root->left);
         fprintf(fout,"JZ R%d, L%d\n",reg,label_2);
@@ -180,6 +185,13 @@ int codegen(struct tnode* root)
         fprintf(fout,"JMP L%d\n",label_1);
         fprintf(fout,"L%d: ",label_2);
         return 0;
+    }
+
+    else if(root->nodeType == BREAK)
+    {
+        int exit_label;
+        loop_exit = pop_from_stack(loop_exit,&exit_label);
+        fprintf(fout,)
     }
 
     // for all the rest node types

@@ -13,7 +13,7 @@
 
 %}
 
-%token VAR NUM READ WRITE START END CONNECTOR IF THEN ELSE ENDIF WHILE DO ENDWHILE INTTYPE BOOLTYPE
+%token VAR NUM READ WRITE START END CONNECTOR IF THEN ELSE ENDIF WHILE DO ENDWHILE INTTYPE BOOLTYPE BREAK CONTINUE
 %nonassoc LT GT LE GE NE EQ
 %left '+' '-'
 %left '*' '/'
@@ -34,6 +34,8 @@ statement: READ '(' VAR ')' ';'   {$$ = createNode(READ,0,0,NULL,$3,NULL);}
          | VAR '=' expr ';'       {$$ = createNode('=',0,0,NULL,$1,$3);}
          | whileStatement
          | ifStatement
+         | BREAK ';'              {$$ = createNode(BREAK,0,0,NULL,NULL,NULL);}
+         | CONTINUE ';'           {$$ = createNode(CONTINUE,0,0,NULL,NULL,NULL);}  
          ;
 
 whileStatement: WHILE '(' expr ')' DO statementList ENDWHILE ';' {$$ = createNode(WHILE,0,0,NULL,$3,$6);}

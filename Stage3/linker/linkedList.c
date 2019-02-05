@@ -12,10 +12,10 @@ struct linkedList* addLabel(struct linkedList *head, char* label, int address)
     temp->next = NULL;
     if(head == NULL) return temp;
     struct linkedList *iterator = head;
-    while(1)
+    while(1)                                                   
     {
-        if(!strcmp(label,iterator->label)) return head;
-        if(iterator->next == NULL) break;
+        // if(!strcmp(label,iterator->label)) return head;             /*uncomment this line to avoid adding multiple copies of the same label*/
+        if(iterator->next == NULL) break;                              /*Will probably come in handy for later stages*/
         iterator = iterator->next;
     }
     iterator->next = temp;

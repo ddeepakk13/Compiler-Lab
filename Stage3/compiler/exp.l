@@ -35,5 +35,7 @@
 "endwhile" {return ENDWHILE;}
 "break" {return BREAK;}
 "continue" {return CONTINUE;}
+"repeat"    {return REPEAT;}
+"until"     {return UNTIL;}
 [ \t\n] {}
 (.)     {printf("Invalid expression\n");exit(1);}

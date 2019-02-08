@@ -5,8 +5,8 @@
 #include "stack.h"
 static int nextReg = 0;
 static int nextLabel = 0;
-struct stack *loop_entry = NULL;
-struct stack *loop_exit = NULL;
+struct stack *loop_entry = NULL;    //stack containing entry labels
+struct stack *loop_exit = NULL;     //stack containing exit labels
 
 void initialize()
 {
@@ -187,6 +187,36 @@ int codegen(struct tnode* root)
         return 0;
     }
 
+    else if(root->nodeType == DOWHILE)
+    {
+        codegen(root->right);
+        int label_1 = getLabel();
+        int label_2 = getLabel();
+        fprintf(fout,"L%d: ",label_1);
+        int reg = codegen(root->left);
+        fprintf(fout,"JZ R%d, L%d\n",reg,label_2);
+        freeReg();
+        codegen(root->right);
+        fprintf(fout,"JMP L%d\n",label_1);
+        fprintf(fout,"L%d: ",label_2);
+        return 0;
+    }
+
+    else if(root->nodeType == REPUNTIL)
+    {
+        codegen(root->right);
+        int label_1 = getLabel();
+        int label_2 = getLabel();
+        fprintf(fout,"L%d: ",label_1);
+        int reg = codegen(root->left);
+        fprintf(fout,"JNZ R%d, L%d\n",reg,label_2);
+        freeReg();
+        codegen(root->right);
+        fprintf(fout,"JMP L%d\n",label_1);
+        fprintf(fout,"L%d: ",label_2);
+        return 0;
+    }
+
     else if(root->nodeType == BREAK)
     {
         if(loop_exit != NULL)
@@ -206,7 +236,7 @@ int codegen(struct tnode* root)
             int entry_label;
             loop_entry = pop_from_stack(loop_entry,&entry_label);
             fprintf(fout,"JMP L%d\n",entry_label);
-            loop_exit = pop_from_stack(loop_exit,&entry_label);     //exit_label used as dummy variable
+            loop_exit = pop_from_stack(loop_exit,&entry_label);     //entry_label used as dummy variable
         }
         return 0;
     }

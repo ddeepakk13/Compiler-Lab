@@ -1,16 +1,14 @@
 begin
+    read(n);
+    s=0;
     a=0;
-    b=0;
-    while(1==1) do
-        write(1);
-        while(1==1) do
-            write(2);
-            while(1==1) do
-                write(3);
-                break;
-            endwhile;
-            break;
+    while(a<n)) do
+        b=0;
+        while(b<a) do
+            s=s+1; 
+            b=b+1;
         endwhile;
-        break;
+        a=a+1;
     endwhile;
+    write(s);
 end

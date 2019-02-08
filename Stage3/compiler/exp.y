@@ -5,6 +5,7 @@
     #include "nodeStructure.h"
     #include "codegen.h"
     #include<stdio.h>
+    #include<stdlib.h>
     int yylex();
     void yyerror(char *mesg);
     extern FILE *yyin;
@@ -13,7 +14,7 @@
 
 %}
 
-%token VAR NUM READ WRITE START END CONNECTOR IF THEN ELSE ENDIF WHILE DO ENDWHILE INTTYPE BOOLTYPE BREAK CONTINUE
+%token VAR NUM READ WRITE START END CONNECTOR IF THEN ELSE ENDIF WHILE DO ENDWHILE INTTYPE BOOLTYPE BREAK CONTINUE REPEAT UNTIL DOWHILE REPUNTIL
 %nonassoc LT GT LE GE NE EQ
 %left '+' '-'
 %left '*' '/'
@@ -34,12 +35,20 @@ statement: READ '(' VAR ')' ';'   {$$ = createNode(READ,0,0,NULL,$3,NULL);}
          | VAR '=' expr ';'       {$$ = createNode('=',0,0,NULL,$1,$3);}
          | whileStatement
          | ifStatement
+         | doWhileStatement
+         | repeatUntilStatement
          | BREAK ';'              {$$ = createNode(BREAK,0,0,NULL,NULL,NULL);}
-         | CONTINUE ';'           {$$ = createNode(CONTINUE,0,0,NULL,NULL,NULL);}  
+         | CONTINUE ';'           {$$ = createNode(CONTINUE,0,0,NULL,NULL,NULL);}
          ;
 
 whileStatement: WHILE '(' expr ')' DO statementList ENDWHILE ';' {$$ = createNode(WHILE,0,0,NULL,$3,$6);}
               ;
+
+doWhileStatement: DO statementList WHILE '(' expr ')' ';'        {$$ = createNode(DOWHILE,0,0,NULL,$5,$2);}
+                ;
+
+repeatUntilStatement: REPEAT statementList UNTIL '(' expr ')' ';'   {$$ = createNode(REPUNTIL,0,0,NULL,$5,$2);}
+                    ;
 
 ifStatement: IF '(' expr ')' THEN statementList ELSE statementList ENDIF ';' {struct tnode* temp = createNode(CONNECTOR,0,0,NULL,$6,$8);
                                                                               $$ = createNode(IF,0,0,NULL,$3,temp);}
@@ -78,4 +87,5 @@ int main(int argc, char* argv[])
 void yyerror(char* msg)
 {
     printf("Bad expression: %s\n",msg);
+    exit(1);
 }

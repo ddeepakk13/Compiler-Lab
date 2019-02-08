@@ -11,5 +11,6 @@ struct tnode {
 
 /*Create a node tnode*/
 struct tnode* createNode(int nodeType, int dataType,int val, char *varName, struct tnode *l, struct tnode *r);
+void typecheck(struct tnode* node);
 
 #endif

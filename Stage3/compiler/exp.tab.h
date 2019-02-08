@@ -63,12 +63,16 @@ extern int yydebug;
     BOOLTYPE = 273,
     BREAK = 274,
     CONTINUE = 275,
-    LT = 276,
-    GT = 277,
-    LE = 278,
-    GE = 279,
-    NE = 280,
-    EQ = 281
+    REPEAT = 276,
+    UNTIL = 277,
+    DOWHILE = 278,
+    REPUNTIL = 279,
+    LT = 280,
+    GT = 281,
+    LE = 282,
+    GE = 283,
+    NE = 284,
+    EQ = 285
   };
 #endif
 

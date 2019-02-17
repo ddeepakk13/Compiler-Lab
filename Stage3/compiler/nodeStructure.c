@@ -25,7 +25,7 @@ void typecheck(struct tnode* node)
         case '*':
         case '/':
             if(node->left->dataType == INTTYPE && node->right->dataType==INTTYPE) return;
-            printf("Error: Type mismatch in aritmetic operator node\n"); exit(1);           //would probably never happen
+            printf("Error: Type mismatch in aritmetic operator node\n"); exit(1);           //would probably never happen; correction: "CAN" happen a=a+(a<b)
             break;
         
         case LT:

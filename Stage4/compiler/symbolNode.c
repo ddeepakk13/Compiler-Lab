@@ -21,6 +21,8 @@ void Install(char *varName, int dataType, int size)    // adds a variable to the
     temp->size = size;
     temp->binding = 4096;                              // variable bindings start from 4096
     temp->next = NULL;
+    temp->row = 0;
+    temp->column = 0;
     if(symbolTable == NULL)                            // initial empty symbol table condition; just assign temp as the head node of symbol table
     {
         symbolTable = temp;
@@ -35,8 +37,27 @@ void Install(char *varName, int dataType, int size)    // adds a variable to the
             exit(1);
         }
         temp->binding += iterator->size;                                                    // otherwise binding of temp is to be updated taking into account the space previous variables will take up
-        if(iterator->next == NULL) break;
+        if(iterator->next == NULL) break;                                                   // break away at the last node
         iterator = iterator->next;
     }
-    iterator->next = temp;
+    iterator->next = temp;                                                                  // if all goes well slap the new variable node on to the back of symbol table and we're done. TEEHEE!
+}
+
+struct symbolNode *Lookup(char * varName)                                                   // lookup a particular variable and return its node address; returns NULL if not found
+{
+    if(symbolTable == NULL)
+    {
+        printf("ERROR: Trying to access empty symbol table\n");
+        exit(1);
+    }
+    struct symbolNode *iterator = symbolTable;
+    while(iterator != NULL)                                                                 // iterate through symbol table
+    {
+        if(!(strcmp(iterator->varName,varName)))                                            // find matching entry
+        {
+            return iterator;
+        }
+        iterator = iterator->next;
+    }
+    return NULL;                                                                            // return NULL if not found
 }

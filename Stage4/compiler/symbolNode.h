@@ -4,7 +4,7 @@
 /*
  *  <-------------------SYMBOLNODE_H------------------------>
  *  # The node that makes up symbol list containing variables
- *  # Nothing much else; just whatever I wrote at the top 
+ *  # Nothing else much; just whatever I wrote at the top 
 */
 
 struct symbolNode
@@ -14,7 +14,11 @@ struct symbolNode
     int size;                   // specifies the size of the variable
     int binding;                // holds the variable's address
     struct symbolNode* next;    // pointer to next variable entry
+    int row;                    // used only for two dimensional arrays
+    int column;                 // used only for two dimensional arrays
 };
+
+/*<---------------------------------------------------Function Prototypes------------------------------------------------------------->*/
 
 void Install(char *varName, int dataType, int size);    // adds a variable to the symbol table; raises error if variable is already present
 struct symbolNode *Lookup(char * varName);              // lookup a particular variable and return its node address; returns NULL if not found

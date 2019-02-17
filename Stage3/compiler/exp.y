@@ -1,7 +1,5 @@
 %{
-    #ifndef YYSTYPE
     #define YYSTYPE struct tnode*
-    #endif
     #include "nodeStructure.h"
     #include "codegen.h"
     #include<stdio.h>

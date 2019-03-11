@@ -1,0 +1,26 @@
+Global Symbol Table:
+int  ExtendedEuclid (4096)
+F0
+Parameter List:
+int b, int a, 
+int  arr (4096)
+int  b (4100)
+<------------ExtendedEuclid------------->
+Local Symbol Table:
+int b (-3)
+int a (-4)
+int r0 (1)
+int r1 (2)
+int s0 (3)
+int s1 (4)
+int t0 (5)
+int t1 (6)
+int qi (7)
+int ri (8)
+int si (9)
+int ti (10)
+<-------------MAIN------------->
+Local Symbol Table:
+int a (1)
+int b (2)
+int c (3)

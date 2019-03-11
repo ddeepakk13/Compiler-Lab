@@ -11,6 +11,7 @@ struct Gsymbol
     int binding;
     struct ParamStruct *paramList;
     int flabel;
+    int designation;
     struct Gsymbol *next;
 };
 

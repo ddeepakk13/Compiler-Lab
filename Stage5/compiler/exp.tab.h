@@ -70,15 +70,18 @@ extern int yydebug;
     INTTYPE = 280,
     BOOLTYPE = 281,
     STRTYPE = 282,
-    CONNECTOR = 283,
-    AND = 284,
-    OR = 285,
-    LT = 286,
-    GT = 287,
-    LE = 288,
-    GE = 289,
-    NE = 290,
-    EQ = 291
+    VARIABLE = 283,
+    ARRAY = 284,
+    FUNCTION = 285,
+    CONNECTOR = 286,
+    AND = 287,
+    OR = 288,
+    LT = 289,
+    GT = 290,
+    LE = 291,
+    GE = 292,
+    NE = 293,
+    EQ = 294
   };
 #endif
 

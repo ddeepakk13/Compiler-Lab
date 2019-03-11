@@ -1,4 +1,5 @@
 #include "Lsymbol.h"
+#include "Gsymbol.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,6 +7,7 @@
 #include "exp.tab.h"
 
 extern struct Lsymbol *LsymbolTable;
+extern struct Gsymbol *GsymbolTable;
 extern struct ParamStruct *paramHead;
 
 struct Lsymbol *LInstall(char *name, int type)      // returns installed node
@@ -22,6 +24,18 @@ struct Lsymbol *LInstall(char *name, int type)      // returns installed node
         return temp;
     }
 
+    struct Gsymbol *Giterator = GsymbolTable;
+    while(Giterator != NULL)
+    {
+        if(Giterator->size == -1)               // if function
+            if(!strcmp(Giterator->name,name))
+            {
+                printf("ERROR: Local variable '%s' cannot assume name of a function\n",name);
+                exit(1);
+            }
+        Giterator = Giterator->next;
+    }
+
     struct Lsymbol *iterator = LsymbolTable;
     while(1)
     {
@@ -34,7 +48,7 @@ struct Lsymbol *LInstall(char *name, int type)      // returns installed node
         if(iterator->next == NULL)  break;
         iterator = iterator->next;
     }
-    if(iterator->binding >= 0)
+    if(iterator->binding >= 1)
     temp->binding = iterator->binding + 1;
     iterator->next = temp;
     return temp;

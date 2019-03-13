@@ -1,26 +1,191 @@
 Global Symbol Table:
-int  ExtendedEuclid (4096)
-F0
-Parameter List:
-int b, int a, 
-int  arr (4096)
-int  b (4100)
-<------------ExtendedEuclid------------->
-Local Symbol Table:
-int b (-3)
-int a (-4)
-int r0 (1)
-int r1 (2)
-int s0 (3)
-int s1 (4)
-int t0 (5)
-int t1 (6)
-int qi (7)
-int ri (8)
-int si (9)
-int ti (10)
+int  n (4096)
+int  arr (4097)
+int  i (4147)
+int  j (4148)
+int  dup (4149)
+Gsize is 54
 <-------------MAIN------------->
-Local Symbol Table:
-int a (1)
-int b (2)
-int c (3)
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered READ
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered NUMBER
+Tree is good in Codegen
+Entered WHILE
+Tree is good in Codegen
+Entered operator section
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'n' is global Variable
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered READ
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered operator section
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered NUMBER
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered NUMBER
+Tree is good in Codegen
+Entered WHILE
+Tree is good in Codegen
+Entered operator section
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'n' is global Variable
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered WHILE
+Tree is good in Codegen
+Entered operator section
+Tree is good in Codegen
+Entered ID
+ID 'j' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'n' is global Variable
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered IF
+Tree is good in Codegen
+Entered operator section
+Tree is good in Codegen
+Entered ID
+ID 'arr' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'arr' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'j' is global Variable
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered ID
+ID 'arr' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered ID
+ID 'arr' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'j' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered ID
+ID 'dup' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'j' is global Variable
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered operator section
+Tree is good in Codegen
+Entered ID
+ID 'j' is global Variable
+Tree is good in Codegen
+Entered NUMBER
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered operator section
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered NUMBER
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered NUMBER
+Tree is good in Codegen
+Entered WHILE
+Tree is good in Codegen
+Entered operator section
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'n' is global Variable
+Tree is good in Codegen
+Entered CONNECTOR
+Tree is good in Codegen
+Entered WRITE
+Tree is good in Codegen
+Entered ID
+ID 'arr' is global Variable
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered =
+Tree is good in Codegen
+Entered operator section
+Tree is good in Codegen
+Entered ID
+ID 'i' is global Variable
+Tree is good in Codegen
+Entered NUMBER
+Tree is good in Codegen
+Entered RETURN
+Tree is good in Codegen
+Entered NUMBER

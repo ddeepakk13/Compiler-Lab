@@ -77,7 +77,7 @@ Program: GDeclBlock FDefBlock MainBlock
 /*<------------------------------------------------------->*/
 
 GDeclBlock: DECL ENDDECL
-          | DECL GDeclList ENDDECL  {Print_GsymbolTable();}
+          | DECL GDeclList ENDDECL  {Print_GsymbolTable(); Initialize();}
           ;
 
 GDeclList: GDecl
@@ -128,8 +128,11 @@ FDef:         Type ID                       {decType = currentType;}
                                              Check_Param_Equality(paramHead,tfunc->paramList);
                                              LParam_Install();
                                              paramHead = NULL;
-                                             printf("<------------%s------------->\n",$2->name);}
-            '{' LDeclBlock Body '}'
+                                             printf("<------------%s------------->\n",$2->name);
+                                             fprintf(fout,"F%d: ",tfunc->flabel);}
+            '{' LDeclBlock Body '}'         {Print_LsymbolTable();
+                                             Generate_Function_Code($10);
+                                             LsymbolTable = NULL;}
     ;
 
 LDeclBlock:
@@ -148,22 +151,23 @@ LIdList: ID                                 {LInstall($1->name,currentType);}
        | LIdList ',' ID                     {LInstall($3->name,currentType);}
        ;
 
-Body: START StatementList ReturnStatement END   {Print_LsymbolTable();
-                                                 Codegen($2);
-                                                 Codegen($3);
-                                                 LsymbolTable = NULL;}
-    | START ReturnStatement END                 {Print_LsymbolTable();
-                                                 Codegen($2);
-                                                 LsymbolTable = NULL;}
+Body: START StatementList ReturnStatement END   {$$ = CreateNode(CONNECTOR,0,$2,$3);}
+    | START ReturnStatement END                 {$$ = $2;}
     ;
+
 
 /*<-------------------------------------------------->*/
 
-MainBlock: INT MAIN '(' ')' {printf("<-------------MAIN------------->\n"); decType = INTTYPE;} '{' LDeclBlock Body '}'
+MainBlock: INT MAIN '(' ')'             {printf("<-------------MAIN------------->\n");
+                                         decType = INTTYPE;
+                                         fprintf(fout,"MAIN: ");} 
+           '{' LDeclBlock Body '}'      {Print_LsymbolTable();
+                                         Generate_Function_Code($8);
+                                         LsymbolTable = NULL;}
          ;
 
 StatementList: Statement
-             | StatementList Statement          {{$$ = CreateNode(CONNECTOR,0,$1,$2);}}
+             | StatementList Statement          {$$ = CreateNode(CONNECTOR,0,$1,$2);}
              ;
 
 Statement: ReadStatement
@@ -186,7 +190,7 @@ IfStatement: IF '(' expr ')' THEN StatementList ENDIF ';'                       
                                                                                  $$ = CreateNode(IF,0,$3,temp);}
            ;
 
-AssignStatement: Variable '=' expr ';'              {$$ = CreateNode('=',0,$1,$2);}
+AssignStatement: Variable '=' expr ';'          {$$ = CreateNode('=',0,$1,$3);}
                ;
 
 ReadStatement: READ '(' Variable ')' ';'        {$$ = CreateNode(READ,0,$3,NULL);}
@@ -317,7 +321,7 @@ void Confirm_Variable(struct ASTnode *node)
     int designation = Get_Designation(node->name);
     if(designation != VARIABLE)
     {
-        printf("ERROR: ID '%s' cannot be used as like a variable\n",node->name);
+        printf("ERROR: ID '%s' cannot be used like a variable\n",node->name);
         exit(1);
     }  
 }
@@ -327,7 +331,7 @@ void Confirm_Array(struct ASTnode *node)
     int designation = Get_Designation(node->name);
     if(designation != ARRAY)
     {
-        printf("ERROR: ID '%s' cannot be used as like a ARRAY\n",node->name);
+        printf("ERROR: ID '%s' cannot be used like a ARRAY\n",node->name);
         exit(1);
     }
 }
@@ -337,7 +341,7 @@ void Confirm_Function(struct ASTnode *node)
     int designation = Get_Designation(node->name);
     if(designation != FUNCTION)
     {
-        printf("ERROR: ID '%s' cannot be used as like a function\n",node->name);
+        printf("ERROR: ID '%s' cannot be used like a function\n",node->name);
         exit(1);
     }
 }

@@ -27,7 +27,7 @@ struct Lsymbol *LInstall(char *name, int type)      // returns installed node
     struct Gsymbol *Giterator = GsymbolTable;
     while(Giterator != NULL)
     {
-        if(Giterator->size == -1)               // if function
+        if(Giterator->designation == FUNCTION)               // if function
             if(!strcmp(Giterator->name,name))
             {
                 printf("ERROR: Local variable '%s' cannot assume name of a function\n",name);
@@ -58,8 +58,7 @@ struct Lsymbol *LLookup(char *name)                // returns requested node; el
 {
     if(LsymbolTable == NULL)
     {
-        printf("ERROR: Trying to access empty Local symbol table\n");
-        exit(1);
+        return NULL;
     }
 
     struct Lsymbol *iterator = LsymbolTable;

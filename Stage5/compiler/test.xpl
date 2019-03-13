@@ -1,54 +1,38 @@
-decl
- int ExtendedEuclid(int a,int b);
- int arr[4],b;
+decl 
+   int n,arr[50],i,j,dup; 
 enddecl
-
-int ExtendedEuclid(int a,int b)
-{
- decl
-  int r0,r1,s0,s1,t0,t1,qi,ri,si,ti;
- enddecl
-
- begin
-  r0 = a;
-  r1 = b;
-  s0 = 1;
-  s1 = 0;
-  t0 = 0;
-  t1 = 1;
-
-  while(r1 != 0) do
-   qi = r0/r1;
-   ri = r0 - (qi*r1);
-   si = s0 - (qi*s1);
-   ti = t0 - (qi*t1);
-   r0 = r1;
-   r1 = ri;
-   s0 = s1;
-   s1 = si;
-   t0 = t1;
-   t1 = ti;
-  endwhile;
-
-  write(r0);
-  write(s0);
-  write(t0);
-
-  return 0;
- end
-}
 
 int main()
 {
- decl
-  int a,b,c;
- enddecl
+  begin
+  read(n);
 
- begin
-  read(a);
-  read(b);
-  c = ExtendedEuclid(a,b);
-  arr[0] = arr();
+  i=0;
+  while(i<n) do
+    read(arr[i]);
+    i = i+1;
+  endwhile;
+
+  i=0;
+  while(i<n) do
+    j=i;
+    while(j<n) do
+      if(arr[i]>arr[j]) then
+        dup = arr[i];
+        arr[i] = arr[j];
+        arr[j] = dup;
+      endif;
+      j = j + 1;
+    endwhile;
+    i = i+1;
+  endwhile;
+
+  i=0;
+  while(i<n) do
+    write(arr[i]);
+    i = i+1;
+  endwhile;
+
   return 0;
- end 
-} 
+  end
+}

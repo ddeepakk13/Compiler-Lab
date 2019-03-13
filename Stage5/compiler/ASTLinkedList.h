@@ -10,7 +10,7 @@ struct ASTLinkedList
     struct ASTLinkedList *previous;
 };
 
-struct ASTLinkedList *InstallArgument(struct ASTnode *node);    // installs argument node to argument list headed by argHead; returns newly added node
+struct ASTLinkedList *InstallArgument(struct ASTnode *node);        // installs argument node to argument list headed by argHead; returns newly added node
 struct ASTLinkedList *Get_ArgumentList_Tail();                      // Returns tail of argument list
 
 #endif

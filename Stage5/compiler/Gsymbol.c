@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include"ParamStruct.h"
+#include "ParamStruct.h"
 #include "exp.tab.h"
 
 extern struct Gsymbol *GsymbolTable;
@@ -75,7 +75,7 @@ void Print_GsymbolTable()
         if(iterator->type == INTTYPE)   printf("int ");
         else if(iterator->type == STRTYPE)  printf("str ");
         printf(" %s (%d)\n",iterator->name,iterator->binding);
-        if(iterator->size == -1)                                // functions are assigned -1 size 
+        if(iterator->designation == FUNCTION)                                // functions are assigned -1 size 
         {
             printf("F%d\n",iterator->flabel);
             Print_Param(iterator->paramList);

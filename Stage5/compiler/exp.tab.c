@@ -486,12 +486,12 @@ static const yytype_uint8 yyrline[] =
 {
        0,    72,    72,    73,    74,    79,    80,    83,    84,    87,
       87,    90,    91,    94,    95,    98,   100,   104,   110,   111,
-     112,   115,   120,   121,   124,   125,   124,   135,   136,   137,
-     140,   141,   144,   147,   148,   151,   155,   162,   162,   165,
-     166,   169,   170,   171,   172,   173,   174,   175,   176,   180,
-     183,   185,   189,   192,   195,   198,   201,   206,   215,   216,
-     217,   218,   226,   227,   228,   229,   230,   231,   232,   233,
-     234,   235,   236,   237,   238,   239,   242,   243,   244
+     112,   115,   120,   121,   124,   125,   124,   138,   139,   140,
+     143,   144,   147,   150,   151,   154,   155,   161,   161,   169,
+     170,   173,   174,   175,   176,   177,   178,   179,   180,   184,
+     187,   189,   193,   196,   199,   202,   205,   210,   219,   220,
+     221,   222,   230,   231,   232,   233,   234,   235,   236,   237,
+     238,   239,   240,   241,   242,   243,   246,   247,   248
 };
 #endif
 
@@ -1402,7 +1402,7 @@ yyreduce:
     {
         case 6:
 #line 80 "exp.y" /* yacc.c:1646  */
-    {Print_GsymbolTable();}
+    {Print_GsymbolTable(); Initialize();}
 #line 1407 "exp.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1469,119 +1469,133 @@ yyreduce:
                                              Check_Param_Equality(paramHead,tfunc->paramList);
                                              LParam_Install();
                                              paramHead = NULL;
-                                             printf("<------------%s------------->\n",(yyvsp[-4])->name);}
-#line 1474 "exp.tab.c" /* yacc.c:1646  */
+                                             printf("<------------%s------------->\n",(yyvsp[-4])->name);
+                                             fprintf(fout,"F%d: ",tfunc->flabel);}
+#line 1475 "exp.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 26:
+#line 133 "exp.y" /* yacc.c:1646  */
+    {Print_LsymbolTable();
+                                             Generate_Function_Code((yyvsp[-1]));
+                                             LsymbolTable = NULL;}
+#line 1483 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
-#line 147 "exp.y" /* yacc.c:1646  */
+#line 150 "exp.y" /* yacc.c:1646  */
     {LInstall((yyvsp[0])->name,currentType);}
-#line 1480 "exp.tab.c" /* yacc.c:1646  */
+#line 1489 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
-#line 148 "exp.y" /* yacc.c:1646  */
+#line 151 "exp.y" /* yacc.c:1646  */
     {LInstall((yyvsp[0])->name,currentType);}
-#line 1486 "exp.tab.c" /* yacc.c:1646  */
+#line 1495 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
-#line 151 "exp.y" /* yacc.c:1646  */
-    {Print_LsymbolTable();
-                                                 Codegen((yyvsp[-2]));
-                                                 Codegen((yyvsp[-1]));
-                                                 LsymbolTable = NULL;}
-#line 1495 "exp.tab.c" /* yacc.c:1646  */
+#line 154 "exp.y" /* yacc.c:1646  */
+    {(yyval) = CreateNode(CONNECTOR,0,(yyvsp[-2]),(yyvsp[-1]));}
+#line 1501 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
 #line 155 "exp.y" /* yacc.c:1646  */
-    {Print_LsymbolTable();
-                                                 Codegen((yyvsp[-1]));
-                                                 LsymbolTable = NULL;}
-#line 1503 "exp.tab.c" /* yacc.c:1646  */
+    {(yyval) = (yyvsp[-1]);}
+#line 1507 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 37:
-#line 162 "exp.y" /* yacc.c:1646  */
-    {printf("<-------------MAIN------------->\n"); decType = INTTYPE;}
-#line 1509 "exp.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 40:
-#line 166 "exp.y" /* yacc.c:1646  */
-    {{(yyval) = CreateNode(CONNECTOR,0,(yyvsp[-1]),(yyvsp[0]));}}
+#line 161 "exp.y" /* yacc.c:1646  */
+    {printf("<-------------MAIN------------->\n");
+                                         decType = INTTYPE;
+                                         fprintf(fout,"MAIN: ");}
 #line 1515 "exp.tab.c" /* yacc.c:1646  */
     break;
 
+  case 38:
+#line 164 "exp.y" /* yacc.c:1646  */
+    {Print_LsymbolTable();
+                                         Generate_Function_Code((yyvsp[-1]));
+                                         LsymbolTable = NULL;}
+#line 1523 "exp.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 40:
+#line 170 "exp.y" /* yacc.c:1646  */
+    {(yyval) = CreateNode(CONNECTOR,0,(yyvsp[-1]),(yyvsp[0]));}
+#line 1529 "exp.tab.c" /* yacc.c:1646  */
+    break;
+
   case 47:
-#line 175 "exp.y" /* yacc.c:1646  */
+#line 179 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(BREAK,0,NULL,NULL);}
-#line 1521 "exp.tab.c" /* yacc.c:1646  */
+#line 1535 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 48:
-#line 176 "exp.y" /* yacc.c:1646  */
+#line 180 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(CONTINUE,0,NULL,NULL);}
-#line 1527 "exp.tab.c" /* yacc.c:1646  */
+#line 1541 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 49:
-#line 180 "exp.y" /* yacc.c:1646  */
+#line 184 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(WHILE,0,(yyvsp[-5]),(yyvsp[-2]));}
-#line 1533 "exp.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 50:
-#line 183 "exp.y" /* yacc.c:1646  */
-    {struct ASTnode *temp = CreateNode(CONNECTOR,0,(yyvsp[-2]),NULL);
-                                                                                 (yyval) = CreateNode(IF,0,(yyvsp[-5]),temp);}
-#line 1540 "exp.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 51:
-#line 185 "exp.y" /* yacc.c:1646  */
-    {struct ASTnode *temp = CreateNode(CONNECTOR,0,(yyvsp[-4]),(yyvsp[-2]));
-                                                                                 (yyval) = CreateNode(IF,0,(yyvsp[-7]),temp);}
 #line 1547 "exp.tab.c" /* yacc.c:1646  */
     break;
 
-  case 52:
+  case 50:
+#line 187 "exp.y" /* yacc.c:1646  */
+    {struct ASTnode *temp = CreateNode(CONNECTOR,0,(yyvsp[-2]),NULL);
+                                                                                 (yyval) = CreateNode(IF,0,(yyvsp[-5]),temp);}
+#line 1554 "exp.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 51:
 #line 189 "exp.y" /* yacc.c:1646  */
-    {(yyval) = CreateNode('=',0,(yyvsp[-3]),(yyvsp[-2]));}
-#line 1553 "exp.tab.c" /* yacc.c:1646  */
+    {struct ASTnode *temp = CreateNode(CONNECTOR,0,(yyvsp[-4]),(yyvsp[-2]));
+                                                                                 (yyval) = CreateNode(IF,0,(yyvsp[-7]),temp);}
+#line 1561 "exp.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 52:
+#line 193 "exp.y" /* yacc.c:1646  */
+    {(yyval) = CreateNode('=',0,(yyvsp[-3]),(yyvsp[-1]));}
+#line 1567 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 53:
-#line 192 "exp.y" /* yacc.c:1646  */
+#line 196 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(READ,0,(yyvsp[-2]),NULL);}
-#line 1559 "exp.tab.c" /* yacc.c:1646  */
+#line 1573 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 54:
-#line 195 "exp.y" /* yacc.c:1646  */
+#line 199 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(WRITE,0,(yyvsp[-2]),NULL);}
-#line 1565 "exp.tab.c" /* yacc.c:1646  */
+#line 1579 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 55:
-#line 198 "exp.y" /* yacc.c:1646  */
+#line 202 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(RETURN,0,(yyvsp[-1]),NULL);}
-#line 1571 "exp.tab.c" /* yacc.c:1646  */
+#line 1585 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 56:
-#line 201 "exp.y" /* yacc.c:1646  */
+#line 205 "exp.y" /* yacc.c:1646  */
     {(yyvsp[0])->Gentry = GLookup((yyvsp[0])->name);
                                     (yyvsp[0])->Lentry = LLookup((yyvsp[0])->name);
                                     Confirm_ID_Exists((yyvsp[0]));
                                     Confirm_Variable((yyvsp[0]));
                                     (yyval) = (yyvsp[0]);}
-#line 1581 "exp.tab.c" /* yacc.c:1646  */
+#line 1595 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 57:
-#line 206 "exp.y" /* yacc.c:1646  */
+#line 210 "exp.y" /* yacc.c:1646  */
     {(yyvsp[-3])->Gentry = GLookup((yyvsp[-3])->name);    
                                     (yyvsp[-3])->Lentry = LLookup((yyvsp[-3])->name);
                                     Confirm_ID_Exists((yyvsp[-3]));
@@ -1589,11 +1603,11 @@ yyreduce:
                                     (yyvsp[-3])->left = (yyvsp[-1]);
                                     Pre_Typecheck_Array_Index((yyvsp[-1]));
                                     (yyval) = (yyvsp[-3]);}
-#line 1593 "exp.tab.c" /* yacc.c:1646  */
+#line 1607 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 61:
-#line 218 "exp.y" /* yacc.c:1646  */
+#line 222 "exp.y" /* yacc.c:1646  */
     {(yyvsp[-3])->Gentry = GLookup((yyvsp[-3])->name);
                                      (yyvsp[-3])->Lentry = LLookup((yyvsp[-3])->name);
                                      Confirm_ID_Exists((yyvsp[-3]));
@@ -1602,107 +1616,107 @@ yyreduce:
                                      Pre_Typecheck_Function((yyvsp[-3]));
                                      argHead = NULL;
                                      (yyval) = (yyvsp[-3]);}
-#line 1606 "exp.tab.c" /* yacc.c:1646  */
+#line 1620 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 62:
-#line 226 "exp.y" /* yacc.c:1646  */
+#line 230 "exp.y" /* yacc.c:1646  */
     {(yyval) = (yyvsp[-1]);}
-#line 1612 "exp.tab.c" /* yacc.c:1646  */
+#line 1626 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 63:
-#line 227 "exp.y" /* yacc.c:1646  */
+#line 231 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode('+',INTTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1618 "exp.tab.c" /* yacc.c:1646  */
+#line 1632 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 64:
-#line 228 "exp.y" /* yacc.c:1646  */
+#line 232 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode('-',INTTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1624 "exp.tab.c" /* yacc.c:1646  */
+#line 1638 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 65:
-#line 229 "exp.y" /* yacc.c:1646  */
+#line 233 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode('*',INTTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1630 "exp.tab.c" /* yacc.c:1646  */
+#line 1644 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 66:
-#line 230 "exp.y" /* yacc.c:1646  */
+#line 234 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode('/',INTTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1636 "exp.tab.c" /* yacc.c:1646  */
+#line 1650 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 67:
-#line 231 "exp.y" /* yacc.c:1646  */
+#line 235 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode('%',INTTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1642 "exp.tab.c" /* yacc.c:1646  */
+#line 1656 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 68:
-#line 232 "exp.y" /* yacc.c:1646  */
+#line 236 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(EQ,BOOLTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1648 "exp.tab.c" /* yacc.c:1646  */
+#line 1662 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 69:
-#line 233 "exp.y" /* yacc.c:1646  */
+#line 237 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(NE,BOOLTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1654 "exp.tab.c" /* yacc.c:1646  */
+#line 1668 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 70:
-#line 234 "exp.y" /* yacc.c:1646  */
+#line 238 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(LT,BOOLTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1660 "exp.tab.c" /* yacc.c:1646  */
+#line 1674 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 71:
-#line 235 "exp.y" /* yacc.c:1646  */
+#line 239 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(GT,BOOLTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1666 "exp.tab.c" /* yacc.c:1646  */
+#line 1680 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 72:
-#line 236 "exp.y" /* yacc.c:1646  */
+#line 240 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(LE,BOOLTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1672 "exp.tab.c" /* yacc.c:1646  */
+#line 1686 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 73:
-#line 237 "exp.y" /* yacc.c:1646  */
+#line 241 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(GE,BOOLTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1678 "exp.tab.c" /* yacc.c:1646  */
+#line 1692 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 74:
-#line 238 "exp.y" /* yacc.c:1646  */
+#line 242 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(AND,BOOLTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1684 "exp.tab.c" /* yacc.c:1646  */
+#line 1698 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 75:
-#line 239 "exp.y" /* yacc.c:1646  */
+#line 243 "exp.y" /* yacc.c:1646  */
     {(yyval) = CreateNode(OR,BOOLTYPE,(yyvsp[-2]),(yyvsp[0]));}
-#line 1690 "exp.tab.c" /* yacc.c:1646  */
+#line 1704 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 77:
-#line 243 "exp.y" /* yacc.c:1646  */
+#line 247 "exp.y" /* yacc.c:1646  */
     {InstallArgument((yyvsp[0]));}
-#line 1696 "exp.tab.c" /* yacc.c:1646  */
+#line 1710 "exp.tab.c" /* yacc.c:1646  */
     break;
 
   case 78:
-#line 244 "exp.y" /* yacc.c:1646  */
+#line 248 "exp.y" /* yacc.c:1646  */
     {InstallArgument((yyvsp[0]));}
-#line 1702 "exp.tab.c" /* yacc.c:1646  */
+#line 1716 "exp.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1706 "exp.tab.c" /* yacc.c:1646  */
+#line 1720 "exp.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1930,7 +1944,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 249 "exp.y" /* yacc.c:1906  */
+#line 253 "exp.y" /* yacc.c:1906  */
 
 
 int main(int argc, char* argv[])
@@ -2002,7 +2016,7 @@ void Confirm_Variable(struct ASTnode *node)
     int designation = Get_Designation(node->name);
     if(designation != VARIABLE)
     {
-        printf("ERROR: ID '%s' cannot be used as like a variable\n",node->name);
+        printf("ERROR: ID '%s' cannot be used like a variable\n",node->name);
         exit(1);
     }  
 }
@@ -2012,7 +2026,7 @@ void Confirm_Array(struct ASTnode *node)
     int designation = Get_Designation(node->name);
     if(designation != ARRAY)
     {
-        printf("ERROR: ID '%s' cannot be used as like a ARRAY\n",node->name);
+        printf("ERROR: ID '%s' cannot be used like a ARRAY\n",node->name);
         exit(1);
     }
 }
@@ -2022,7 +2036,7 @@ void Confirm_Function(struct ASTnode *node)
     int designation = Get_Designation(node->name);
     if(designation != FUNCTION)
     {
-        printf("ERROR: ID '%s' cannot be used as like a function\n",node->name);
+        printf("ERROR: ID '%s' cannot be used like a function\n",node->name);
         exit(1);
     }
 }

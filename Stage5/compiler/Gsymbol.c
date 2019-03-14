@@ -18,6 +18,7 @@ struct Gsymbol *GInstall(char *name, int type, int size)   // returns the newly 
     temp->binding = 4096;
     temp->paramList = NULL;
     if(size == -1) temp->flabel = getFlabel();    // functions are assigned -1 size
+    else temp->flabel = -1;
     temp->designation = 0;
     temp->next = NULL;
 

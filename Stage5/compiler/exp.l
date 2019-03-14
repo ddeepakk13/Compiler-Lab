@@ -24,8 +24,9 @@
 ">"                     {return GT;}
 "<="                    {return LE;}
 ">="                    {return GE;}
-"||"                    {return OR;}
-"&&"                    {return AND;}
+"OR"                    {return OR;}
+"AND"                   {return AND;}
+"NOT"                   {return NOT;}
 "begin"                 {return START;}
 "end"                   {return END;}
 "read"                  {return READ;}

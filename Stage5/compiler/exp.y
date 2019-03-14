@@ -54,8 +54,9 @@
 %token MAIN RETURN
 %token INTTYPE BOOLTYPE STRTYPE                                 /* dataType specifiers; not returned by lex; used for node building */
 %token VARIABLE ARRAY FUNCTION
+%token FUNCTIONOVER
 %token CONNECTOR                                                /* nodeType specifier for chaining statements; not returned by lex */
-%left AND OR                                                    /* logical operators */
+%left AND OR NOT                                                /* logical operators */
 %nonassoc LT GT LE GE NE EQ                                     /* relational operator keywords */
 %left '+' '-'
 %left '*' '/' '%'
@@ -69,9 +70,9 @@
 /* <---------------------------------____________GRAMMAR___RULES__________-----------------------------------------------------> */
 
 
-Program: GDeclBlock FDefBlock MainBlock
-       | GDeclBlock MainBlock
-       | MainBlock
+Program: GDeclBlock FDefBlock MainBlock     {printf("Successfully compiled\n");}
+       | GDeclBlock MainBlock               {printf("Successfully compiled\n");}
+       | MainBlock                          {printf("Successfully compiled\n");}
        ;
 
 /*<------------------------------------------------------->*/
@@ -132,6 +133,13 @@ FDef:         Type ID                       {decType = currentType;}
                                              fprintf(fout,"F%d: ",tfunc->flabel);}
             '{' LDeclBlock Body '}'         {Print_LsymbolTable();
                                              Generate_Function_Code($10);
+                                             struct Gsymbol *tfunc = GLookup($2->name);
+                                             if(tfunc->flabel == FUNCTIONOVER)
+                                             {
+                                                 printf("ERROR: Multiple definitions of function '%s' was found\n",tfunc->name);
+                                                 exit(1);
+                                             }
+                                             tfunc->flabel = FUNCTIONOVER;
                                              LsymbolTable = NULL;}
     ;
 
@@ -241,6 +249,7 @@ expr: NUMBER
     | expr GE expr                  {$$ = CreateNode(GE,BOOLTYPE,$1,$3);}
     | expr AND expr                 {$$ = CreateNode(AND,BOOLTYPE,$1,$3);}
     | expr OR expr                  {$$ = CreateNode(OR,BOOLTYPE,$1,$3);}
+    | NOT expr                      {$$ = CreateNode(NOT,BOOLTYPE,$2,NULL);}
     ;
 
 ArgList: 

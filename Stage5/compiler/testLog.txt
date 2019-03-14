@@ -1,191 +1,39 @@
 Global Symbol Table:
-int  n (4096)
-int  arr (4097)
-int  i (4147)
-int  j (4148)
-int  dup (4149)
-Gsize is 54
+int  a (4096)
+Gsize is 1
 <-------------MAIN------------->
-Tree is good in Codegen
 Entered CONNECTOR
-Tree is good in Codegen
 Entered CONNECTOR
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
-Entered READ
-Tree is good in Codegen
 Entered =
-Tree is good in Codegen
 Entered NUMBER
-Tree is good in Codegen
 Entered WHILE
-Tree is good in Codegen
 Entered operator section
-Tree is good in Codegen
 Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'n' is global Variable
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
-Entered READ
-Tree is good in Codegen
-Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
-Entered =
-Tree is good in Codegen
-Entered operator section
-Tree is good in Codegen
-Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
+ID 'a' is global Variable
 Entered NUMBER
-Tree is good in Codegen
-Entered =
-Tree is good in Codegen
-Entered NUMBER
-Tree is good in Codegen
-Entered WHILE
-Tree is good in Codegen
-Entered operator section
-Tree is good in Codegen
-Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'n' is global Variable
-Tree is good in Codegen
 Entered CONNECTOR
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
-Entered =
-Tree is good in Codegen
-Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
-Entered WHILE
-Tree is good in Codegen
-Entered operator section
-Tree is good in Codegen
-Entered ID
-ID 'j' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'n' is global Variable
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
 Entered IF
-Tree is good in Codegen
 Entered operator section
-Tree is good in Codegen
-Entered ID
-ID 'arr' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'arr' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'j' is global Variable
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
-Entered =
-Tree is good in Codegen
-Entered ID
-ID 'arr' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
-Entered =
-Tree is good in Codegen
-Entered ID
-ID 'arr' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'j' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
-Entered =
-Tree is good in Codegen
-Entered ID
-ID 'dup' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'j' is global Variable
-Tree is good in Codegen
-Entered =
-Tree is good in Codegen
 Entered operator section
-Tree is good in Codegen
+Entered operator section
 Entered ID
-ID 'j' is global Variable
-Tree is good in Codegen
+ID 'a' is global Variable
 Entered NUMBER
-Tree is good in Codegen
-Entered =
-Tree is good in Codegen
-Entered operator section
-Tree is good in Codegen
-Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
 Entered NUMBER
-Tree is good in Codegen
-Entered =
-Tree is good in Codegen
-Entered NUMBER
-Tree is good in Codegen
-Entered WHILE
-Tree is good in Codegen
 Entered operator section
-Tree is good in Codegen
+Entered operator section
 Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'n' is global Variable
-Tree is good in Codegen
-Entered CONNECTOR
-Tree is good in Codegen
+ID 'a' is global Variable
+Entered NUMBER
+Entered NUMBER
 Entered WRITE
-Tree is good in Codegen
 Entered ID
-ID 'arr' is global Variable
-Tree is good in Codegen
-Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
+ID 'a' is global Variable
 Entered =
-Tree is good in Codegen
 Entered operator section
-Tree is good in Codegen
 Entered ID
-ID 'i' is global Variable
-Tree is good in Codegen
+ID 'a' is global Variable
 Entered NUMBER
-Tree is good in Codegen
 Entered RETURN
-Tree is good in Codegen
 Entered NUMBER
+Successfully compiled

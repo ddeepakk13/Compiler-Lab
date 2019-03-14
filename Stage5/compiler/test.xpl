@@ -1,38 +1,18 @@
 decl 
-   int n,arr[50],i,j,dup; 
+  int a;
 enddecl
+
 
 int main()
 {
   begin
-  read(n);
-
-  i=0;
-  while(i<n) do
-    read(arr[i]);
-    i = i+1;
-  endwhile;
-
-  i=0;
-  while(i<n) do
-    j=i;
-    while(j<n) do
-      if(arr[i]>arr[j]) then
-        dup = arr[i];
-        arr[i] = arr[j];
-        arr[j] = dup;
+    a = 0;
+    while(NOT(a==10)) do
+      if(NOT((a%3 == 0) OR (a%5 == 0))) then
+        write(a);
       endif;
-      j = j + 1;
+      a = a+1;
     endwhile;
-    i = i+1;
-  endwhile;
-
-  i=0;
-  while(i<n) do
-    write(arr[i]);
-    i = i+1;
-  endwhile;
-
-  return 0;
+    return 0;
   end
 }

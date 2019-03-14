@@ -73,15 +73,17 @@ extern int yydebug;
     VARIABLE = 283,
     ARRAY = 284,
     FUNCTION = 285,
-    CONNECTOR = 286,
-    AND = 287,
-    OR = 288,
-    LT = 289,
-    GT = 290,
-    LE = 291,
-    GE = 292,
-    NE = 293,
-    EQ = 294
+    FUNCTIONOVER = 286,
+    CONNECTOR = 287,
+    AND = 288,
+    OR = 289,
+    NOT = 290,
+    LT = 291,
+    GT = 292,
+    LE = 293,
+    GE = 294,
+    NE = 295,
+    EQ = 296
   };
 #endif
 

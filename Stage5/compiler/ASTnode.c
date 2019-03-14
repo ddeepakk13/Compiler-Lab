@@ -66,6 +66,13 @@ void TypecheckNode(struct ASTnode *node)
             exit(1);
             break;
 
+        case NOT:
+            leftType = Get_Data_Type(node->left);
+            if(leftType == BOOLTYPE)    return;
+            printf("ERROR: not operator expects boolean input\n");
+            exit(1);
+            break;
+
         case RETURN:
             leftType = Get_Data_Type(node->left);
             if(leftType == decType)  return;                    // decType contains current return type

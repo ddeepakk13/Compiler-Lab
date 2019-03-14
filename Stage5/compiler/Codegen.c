@@ -53,8 +53,8 @@ void Generate_Function_Code(struct ASTnode *node)
 
 int Codegen(struct ASTnode *node)
 {
-    if(node != NULL) printf("Tree is good in Codegen\n");
-    else printf("Tree is broken in Codegen\n");
+    if(node == NULL)
+        printf("Tree is broken in Codegen\n");
 
     if(node->nodeType == CONNECTOR)
     {
@@ -203,6 +203,19 @@ int Codegen(struct ASTnode *node)
             int entryLabel = Peek(loop_entry_stack);
             fprintf(fout,"JMP L%d\n",entryLabel);
         }
+    }
+
+    else if(node->nodeType == NOT)
+    {
+        int reg = Codegen(node->left);
+        int label1 = GetLabel();
+        int label2 = GetLabel();
+        fprintf(fout,"JZ R%d, L%d\n",reg,label1);
+        fprintf(fout,"MOV R%d, 0\n",reg);
+        fprintf(fout,"JMP L%d\n",label2);
+        fprintf(fout,"L%d: MOV R%d, 1\n",label1,reg);
+        fprintf(fout,"L%d: ",label2);
+        return reg;
     }
 
     else

@@ -54,7 +54,6 @@
 %token MAIN RETURN
 %token INTTYPE BOOLTYPE STRTYPE                                 /* dataType specifiers; not returned by lex; used for node building */
 %token VARIABLE ARRAY FUNCTION
-%token FUNCTIONOVER
 %token CONNECTOR                                                /* nodeType specifier for chaining statements; not returned by lex */
 %left AND OR NOT                                                /* logical operators */
 %nonassoc LT GT LE GE NE EQ                                     /* relational operator keywords */
@@ -134,12 +133,12 @@ FDef:         Type ID                       {decType = currentType;}
             '{' LDeclBlock Body '}'         {Print_LsymbolTable();
                                              Generate_Function_Code($10);
                                              struct Gsymbol *tfunc = GLookup($2->name);
-                                             if(tfunc->flabel == FUNCTIONOVER)
+                                             if(tfunc->size == -2)
                                              {
-                                                 printf("ERROR: Multiple definitions of function '%s' was found\n",tfunc->name);
+                                                 printf("ERROR: Multiple definitions found for function '%s'\n",tfunc->name);
                                                  exit(1);
                                              }
-                                             tfunc->flabel = FUNCTIONOVER;
+                                             tfunc->size = -2;
                                              LsymbolTable = NULL;}
     ;
 

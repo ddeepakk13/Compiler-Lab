@@ -30,6 +30,6 @@ int getLabelAddress(struct linkedList *head, char* label)
         if(!strcmp(label,iterator->label)) return iterator->address;
         iterator = iterator->next;
     }
-    printf("ERROR: Undefined label encountered\n");
+    printf("ERROR: Undefined label '%s' encountered\n",label);
     exit(1);
 }
